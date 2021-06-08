@@ -14,3 +14,6 @@ function changeToTemp(){
 function changeToBookkeeping1(){
     setTimeout(()=> window.location.href = "../webpage/bookkeeping.php", 2000);
 }
+function changeToTemp1(){
+    window.location.href = "../webpage/loginToBookkeeping.php";
+}
