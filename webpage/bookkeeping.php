@@ -7,8 +7,7 @@
     <link href='../node_modules/fullcalendar/main.css' rel='stylesheet' />
     <script src='../node_modules/fullcalendar/main.js'></script>
     <link href="../css/bookkeeping.css" rel='stylesheet'/>
-    
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
   <body>
     <div id='calendar'>
@@ -25,7 +24,7 @@
         dateClick: function(info){ 
         selectDate = info.dateStr;
         document.getElementById("selectDate").value= selectDate;
-        console.log(calendar.today());
+        
         if(preInfo === ""){
         info.dayEl.style.backgroundColor = '#c6d9eb';
         }
@@ -41,29 +40,57 @@
         }
         }
       preInfo = info;
-      /*calendar.addEvent(
-        { 
-          title: 'The Title', // a property!
-          start: info.dateStr, // a property!
-          allDay: true // a property! ** see important note below about 'end' **
-        })*/
+   
     },  
     dayMaxEventRows: true, // for all non-TimeGrid views
  
   }, 
   
   );
+  $('form').on('submit', function(){
+    $.ajax({
+        url: 'bookkeeping.php',              // 要傳送的頁面
+        method: 'POST',               // 使用 POST 方法傳送請求
+        dataType: 'json',             // 回傳資料會是 json 格式
+        data: $('form').serialize(),  // 將表單資料用打包起來送出去
+        success: function(res){       // 成功以後會執行這個方法
+          console.log("success")
+          console.log(res)
+        /*calendar.addEvent(
+        { 
+          title: document.getElementById("varity").value, // a property!
+          start: selectDate, // a property!
+          allDay: true // a property! ** see important note below about 'end' **
+        }) */                              
+        },
+        error: (res)=>{
+          console.log("error")
+          console.log(res)}
+    });
+    return false;  // 阻止瀏覽器跳轉到 send.php，因為已經用 ajax 送出去了
+});
+
+  /*function addRecord(){
+      console.log("1")
+      calendar.addEvent(
+        { 
+          title: document.getElementById("varity").value, // a property!
+          start: selectDate, // a property!
+          allDay: true // a property! ** see important note below about 'end' **
+        })
+  }  */
   
   calendar.render();
   
+  console.log("render")
 });
-      
+ 
       </script>
     </div>
     <div id='setForm'>
-    <form action="#" method="post">
+    <form  action="bookkeeping.php" method="post" id="form">
     <div class="form-group">
-      <input  class="form-control" id="selectDate" disabled>
+      <input  class="form-control" id="selectDate">
     </div>
     <div class="form-group">
       <label for="varity">消費種類</label>
@@ -80,13 +107,13 @@
     </div>
     <div class="form-group">
       <label for="name">消費項目</label>
-      <input type="text" class="form-control">
+      <input type="text" class="form-control" name="type" id="name"> 
     </div>
     <div class="form-group">
       <label for="name">消費金額</label>
-      <input type="number" class="form-control">
+      <input type="number" class="form-control" name="amount" id="amount">
     </div>
-    <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+    <input type="submit" class="btn btn-primary" id="submit" value="記帳"/>
    </form>
    </div>
   </body>
