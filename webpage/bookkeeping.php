@@ -36,7 +36,7 @@
           else{
             info.dayEl.style.backgroundColor = currentColor;
             preInfo.dayEl.style.backgroundColor = "#c6d9eb";
-          }
+            }
           }
         preInfo = info;
         /*calendar.addEvent(
