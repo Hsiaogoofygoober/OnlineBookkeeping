@@ -32,8 +32,8 @@
             $pass = mysqli_fetch_row($result);
             $pa=$pass[1];
             if($pa==$password){              
-              $_SESSION["one"]=$username;
-              $_SESSION["two"]=$password;
+              $_SESSION["username"]=$username;
+              $_SESSION["password"]=$password;
               echo"登入成功！";
               header("Refresh:1;url=bookkeeping.php");
             }

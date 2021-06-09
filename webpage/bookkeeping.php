@@ -10,14 +10,46 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
   <body>
-    <div id='calendar'>
+  <div id='calendar'></div>
+    <div id='setForm'>
+    <form id="formId" >
+    <div class="form-group">
+      <input  class="form-control" id="selectDate" name="selectDate">
+    </div>
+    <div class="form-group">
+      <label for="type">消費種類</label>
+        <select class="form-control" name="type" id="type">
+          <option value="飲食">飲食</option>
+          <option value="交通">交通</option>
+          <option value="消費">消費</option>
+          <option value="娛樂">娛樂</option>
+          <option value="居家">居家</option>
+          <option value="醫療">醫療</option>
+          <option value="其他">其他</option>
+          <option value="收入">收入</option>
+        </select>
+    </div>
+    <div class="form-group">
+      <label for="extended">消費項目</label>
+      <input type="text" class="form-control" name="extended" id="extended">
+    </div>
+    <div class="form-group">
+      <label for="amount">消費金額</label>
+      <input type="number" class="form-control" name="amount" id="amount">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+   </form>
+   </div>
+  </body>
+</html>
+
       <script>
-        var selectDate = "";
+        let selectDate = "";
         document.addEventListener('DOMContentLoaded', function() {
-          var calendarEl = document.getElementById('calendar');
+          let calendarEl = document.getElementById('calendar');
           let preInfo = "";
           let currentColor = "";
-          var calendar = new FullCalendar.Calendar(calendarEl, {
+          let calendar = new FullCalendar.Calendar(calendarEl, {
           
           themeSystem: 'bootstrap',
 
@@ -44,99 +76,35 @@
     },  
     dayMaxEventRows: true, // for all non-TimeGrid views
  
-  }, 
-  
-  );
-  $('form').on('submit', function(){
+  });
+
+  $('#formId').on('submit', function(){
     $.ajax({
-        url: 'bookkeeping.php',              // 要傳送的頁面
+        url: 'form.php',              // 要傳送的頁面
         method: 'POST',               // 使用 POST 方法傳送請求
         dataType: 'json',             // 回傳資料會是 json 格式
-        data: $('form').serialize(),  // 將表單資料用打包起來送出去
-        success: function(res){       // 成功以後會執行這個方法
-          console.log("success")
-          console.log(res)
-        /*calendar.addEvent(
-        { 
-          title: document.getElementById("varity").value, // a property!
-          start: selectDate, // a property!
-          allDay: true // a property! ** see important note below about 'end' **
-        }) */                              
-        },
-        error: (res)=>{
-          console.log("error")
-          console.log(res)}
+        data: $('#formId').serialize(),  // 將表單資料用打包起來送出去
+        success: function(res){
+           calendar.addEvent(
+           { 
+             title: document.getElementById("type").value, // a property!
+             start: selectDate, // a property!
+             allDay: true // a property! ** see important note below about 'end' **
+           })
+          if(res.success === true){
+              console.log('傳送成功');
+          }else{
+              console.log('傳送失敗');
+          }
+},
     });
-    return false;  // 阻止瀏覽器跳轉到 send.php，因為已經用 ajax 送出去了
+    return false;  // 阻止瀏覽器跳轉到 form.php，因為已經用 ajax 送出去了
 });
 
-  /*function addRecord(){
-      console.log("1")
-      calendar.addEvent(
-        { 
-          title: document.getElementById("varity").value, // a property!
-          start: selectDate, // a property!
-          allDay: true // a property! ** see important note below about 'end' **
-        })
-  }  */
-  
+   
   calendar.render();
   
   console.log("render")
 });
  
-      </script>
-    </div>
-    <div id='setForm'>
-    <form  action="bookkeeping.php" method="post" id="form">
-    <div class="form-group">
-      <input  class="form-control" id="selectDate">
-    </div>
-    <div class="form-group">
-      <label for="varity">消費種類</label>
-        <select class="form-control" name="type" id="varity">
-          <option value="飲食">飲食</option>
-          <option value="交通">交通</option>
-          <option value="消費">消費</option>
-          <option value="娛樂">娛樂</option>
-          <option value="居家">居家</option>
-          <option value="醫療">醫療</option>
-          <option value="其他">其他</option>
-          <option value="收入">收入</option>
-        </select>
-    </div>
-    <div class="form-group">
-      <label for="name">消費項目</label>
-      <input type="text" class="form-control" name="extended">
-    </div>
-    <div class="form-group">
-      <label for="name">消費金額</label>
-      <input type="number" class="form-control" name="amount">
-    </div>
-    <button type="submit" class="btn btn-primary" name="submit" id="submit">Submit</button>
-   </form>
-   </div>
-   <?php
-   session_start();
-   if($_SESSION["one"]){
-    if(isset($_POST["submit"])){
-      $date = $_POST["selectDate"];
-      $type = $_POST["type"];
-      $extended = $_POST["extended"];
-      $amount = $_POST["amount"];
-      $username = $_SESSION["one"];
-        if($date != "" && $type != "" && $extended != "" && $amount != ""){
-          require_once("setting.inc");
-          $sql = "INSERT INTO userdata (UserName, CostDate, CostType, CostAmount, CostExtended) Values ('$username', '$date', '$type','$amount','$extended')";
-          mysqli_query($db_link, $sql);
-          mysqli_close($db_link);         
-        }
-      }      
-    }
-  else{
-    header("Location: ../webpage/loginPage.php");
-  }
-  
-   ?>
-  </body>
-</html>
+</script>
