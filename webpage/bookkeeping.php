@@ -72,7 +72,6 @@
         }
         }
       preInfo = info;
-   
     },  
     dayMaxEventRows: true, // for all non-TimeGrid views
  
@@ -80,7 +79,7 @@
 
   $('#formId').on('submit', function(){
     $.ajax({
-        url: 'form.php',              // 要傳送的頁面
+        url: 'add_data.php',              // 要傳送的頁面
         method: 'POST',               // 使用 POST 方法傳送請求
         dataType: 'json',             // 回傳資料會是 json 格式
         data: $('#formId').serialize(),  // 將表單資料用打包起來送出去

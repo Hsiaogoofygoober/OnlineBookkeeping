@@ -1,8 +1,7 @@
 <?php
-  header('Content-Type: application/json; charset=UTF-8'); //設定資料類型為 json，編碼 utf-8 
+   header('Content-Type: application/json; charset=UTF-8'); //設定資料類型為 json，編碼 utf-8 
    session_start();
-   if($_SESSION["username"]){
-    
+   if($_SESSION["username"]){    
       $date = $_POST["selectDate"];
       $type = $_POST["type"];
       $extended = $_POST["extended"];
@@ -18,13 +17,9 @@
         }
         else{
             echo json_encode(array('success' => false ));
-        }
-        
-      
-      
+        }      
     }
   else{
     header("Location: ../webpage/loginPage.php");
   }
-
-   ?>
+  ?>
