@@ -7,21 +7,31 @@
     <link href='../node_modules/fullcalendar/main.css' rel='stylesheet' />
     <script src='../node_modules/fullcalendar/main.js'></script>
     <link href="../css/bookkeeping.css" rel='stylesheet'/>
+    <link href="../css/Css.css" rel='stylesheet'/>
+    <link href="../css/pieChart.css" rel='stylesheet'/>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="http://static.pureexample.com/js/flot/excanvas.min.js"></script>
+    <script src="http://static.pureexample.com/js/flot/jquery.flot.min.js"></script>
+    <script src="http://static.pureexample.com/js/flot/jquery.flot.pie.min.js"></script>
+    <script src="../js/calendar.js"></script>
+    <script src="../js/pieChart.js"></script>
   </head>
-  <body>
+
+  <body id="body">
   <div id='calendar'></div>
-    <div id='setForm'>
+  <div id='setForm'>
+    <img src='../img/istockphoto-995480036-170667a.jpg' id='img' style="width: 100% ;display:block; margin:auto;">
     <form id="formId" >
     <div class="form-group">
-      <input  class="form-control" id="selectDate" name="selectDate">
+      <input  class="form-control" id="selectDate" name="selectDate" readonly>
     </div>
     <div class="form-group">
-      <label for="type">消費種類</label>
+      <label for="type">消費項目</label>
         <select class="form-control" name="type" id="type">
           <option value="飲食">飲食</option>
           <option value="交通">交通</option>
-          <option value="消費">消費</option>
+          <option value="購物">購物</option>
           <option value="娛樂">娛樂</option>
           <option value="居家">居家</option>
           <option value="醫療">醫療</option>
@@ -30,81 +40,52 @@
         </select>
     </div>
     <div class="form-group">
-      <label for="extended">消費項目</label>
+      <label for="extended">消費說明</label>
       <input type="text" class="form-control" name="extended" id="extended">
     </div>
     <div class="form-group">
       <label for="amount">消費金額</label>
       <input type="number" class="form-control" name="amount" id="amount">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary" id="submit">Submit</button>
    </form>
    </div>
+   <div id="piechart"></div> 
   </body>
 </html>
+<script>
+      let selectElem = document.getElementById('type');
+      selectElem.addEventListener('click', function(){
+      let img = document.getElementById('img').src;
+      let type = document.getElementById('type').value;
+      
+      switch(type){
+        case '飲食':
+          document.getElementById('img').src = '../img/istockphoto-995480036-170667a.jpg';
+          break;
+        case '交通':
+          document.getElementById('img').src = '../img/istockphoto-1153404277-170667a.jpg';
+          break;
+        case '購物':
+          document.getElementById('img').src = '../img/e326910502e1ddd65a45e36e1533ecb2_512_512.jpg';
+          break;
+        case '娛樂':
+          document.getElementById('img').src = '../img/370ca3d01308e37e3e98afbc6e71ad38_512_512.jpg';
+          break;
+        case '居家':
+          document.getElementById('img').src = '../img/house.png';
+          break;
+        case '醫療':
+          document.getElementById('img').src = '../img/medical.png';
+          break;
+        case '其他':
+          document.getElementById('img').src = '../img/another.png';
+          break;
+        case '收入':
+          document.getElementById('img').src = '../img/money.jpg';
+          break;
+      }
+      
+      })
+    </script>
 
-      <script>
-        let selectDate = "";
-        document.addEventListener('DOMContentLoaded', function() {
-          let calendarEl = document.getElementById('calendar');
-          let preInfo = "";
-          let currentColor = "";
-          let calendar = new FullCalendar.Calendar(calendarEl, {
-          
-          themeSystem: 'bootstrap',
-
-        dateClick: function(info){ 
-        selectDate = info.dateStr;
-        document.getElementById("selectDate").value= selectDate;
-        
-        if(preInfo === ""){
-        info.dayEl.style.backgroundColor = '#c6d9eb';
-        }
-        else{
-          currentColor = info.dayEl.style.backgroundColor;
-        if(preInfo.dateStr !== info.dateStr){ 
-          info.dayEl.style.backgroundColor = '#c6d9eb';
-          preInfo.dayEl.style.backgroundColor = currentColor;
-        }
-        else{
-          info.dayEl.style.backgroundColor = currentColor;
-          preInfo.dayEl.style.backgroundColor = "#c6d9eb";
-        }
-        }
-      preInfo = info;
-   
-    },  
-    dayMaxEventRows: true, // for all non-TimeGrid views
- 
-  });
-
-  $('#formId').on('submit', function(){
-    $.ajax({
-        url: 'form.php',              // 要傳送的頁面
-        method: 'POST',               // 使用 POST 方法傳送請求
-        dataType: 'json',             // 回傳資料會是 json 格式
-        data: $('#formId').serialize(),  // 將表單資料用打包起來送出去
-        success: function(res){
-           calendar.addEvent(
-           { 
-             title: document.getElementById("type").value, // a property!
-             start: selectDate, // a property!
-             allDay: true // a property! ** see important note below about 'end' **
-           })
-          if(res.success === true){
-              console.log('傳送成功');
-          }else{
-              console.log('傳送失敗');
-          }
-},
-    });
-    return false;  // 阻止瀏覽器跳轉到 form.php，因為已經用 ajax 送出去了
-});
-
-   
-  calendar.render();
-  
-  console.log("render")
-});
- 
-</script>

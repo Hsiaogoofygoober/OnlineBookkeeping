@@ -34,8 +34,7 @@
             if($pa==$password){              
               $_SESSION["username"]=$username;
               $_SESSION["password"]=$password;
-              echo"登入成功！";
-              header("Refresh:1;url=bookkeeping.php");
+              header("Refresh:0;url=bookkeeping.php");
             }
             else{  
               echo"<script>"."window.alert"."("."\""."登入失敗，請重新登入！"."\"".")".";"."</script>";
