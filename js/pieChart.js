@@ -16,7 +16,7 @@ google.charts.load('current', {'packages':['corechart']});
         ]);
 
         var options = {
-          title: '消費項目統計',
+          title: '記帳統計',
           titleTextStyle:{fontSize: 20},
           chartArea:{top:50,left: 20,width:'80%',height:'80%'},
           legend:{position: 'bottom'},

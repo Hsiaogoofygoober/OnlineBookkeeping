@@ -14,10 +14,17 @@
         $result2 = mysqli_query($db_link, $sql2);
         $result3 = mysqli_query($db_link, $sql3);
 
-        $rows = mysqli_fetch_array($result, MYSQLI_NUM);
-        $rows1 = mysqli_fetch_array($result1, MYSQLI_NUM);
-        $rows2 = mysqli_fetch_array($result2, MYSQLI_NUM);
-        $rows3 = mysqli_fetch_array($result3, MYSQLI_NUM); 
+        $rDate = mysqli_fetch_array($result, MYSQLI_NUM);
+        $rType = mysqli_fetch_array($result1, MYSQLI_NUM);
+        $rExtended = mysqli_fetch_array($result2, MYSQLI_NUM);
+        $rAmount = mysqli_fetch_array($result3, MYSQLI_NUM);
+        
+        echo json_encode(array(
+            'rDate' => $rDate,
+            'rType' => $rType,
+            '$rExtended' => $rExtended,
+            'rAmount' => $rAmount
+        ));
     }
     else{
         header("Location: ../bookkeeping-1/loginPage.php");
