@@ -14,14 +14,12 @@
     <script src="http://static.pureexample.com/js/flot/excanvas.min.js"></script>
     <script src="http://static.pureexample.com/js/flot/jquery.flot.min.js"></script>
     <script src="http://static.pureexample.com/js/flot/jquery.flot.pie.min.js"></script>
-    <script src="../js/calendar.js"></script>
-    <script src="../js/pieChart.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   </head>
 
   <body id="body">
   <div id='calendar'></div>
   <div id='setForm'>
-    <img src='../img/istockphoto-995480036-170667a.jpg' id='img' style="width: 100% ;display:block; margin:auto;">
     <form id="formId" >
     <div class="form-group">
       <input  class="form-control" id="selectDate" name="selectDate" readonly>
@@ -53,38 +51,6 @@
    <div id="piechart"></div> 
   </body>
 </html>
-<script>
-      let selectElem = document.getElementById('type');
-      selectElem.addEventListener('click', function(){
-      let img = document.getElementById('img').src;
-      let type = document.getElementById('type').value;
-      
-      switch(type){
-        case '飲食':
-          document.getElementById('img').src = '../img/istockphoto-995480036-170667a.jpg';
-          break;
-        case '交通':
-          document.getElementById('img').src = '../img/istockphoto-1153404277-170667a.jpg';
-          break;
-        case '購物':
-          document.getElementById('img').src = '../img/e326910502e1ddd65a45e36e1533ecb2_512_512.jpg';
-          break;
-        case '娛樂':
-          document.getElementById('img').src = '../img/370ca3d01308e37e3e98afbc6e71ad38_512_512.jpg';
-          break;
-        case '居家':
-          document.getElementById('img').src = '../img/house.png';
-          break;
-        case '醫療':
-          document.getElementById('img').src = '../img/medical.png';
-          break;
-        case '其他':
-          document.getElementById('img').src = '../img/another.png';
-          break;
-        case '收入':
-          document.getElementById('img').src = '../img/money.jpg';
-          break;
-      }
-      
-      })
-    </script>
+<script src="../js/calendar.js"></script>
+<script src="../js/pieChart.js"></script>
+

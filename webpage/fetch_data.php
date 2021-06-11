@@ -11,12 +11,26 @@
     $result2 = mysqli_query($db_link, $sql2);
     $result3 = mysqli_query($db_link, $sql3);
 
+<<<<<<< HEAD
     if(mysqli_num_rows($result) > 0){
       while($rDate = mysqli_fetch_array($result, MYSQLI_NUM)){
         echo $rDate[0];
         echo $rDate[1];
         echo $rDate[2];
       }
+=======
+        $rDate = mysqli_fetch_array($result, MYSQLI_NUM);
+        $rType = mysqli_fetch_array($result1, MYSQLI_NUM);
+        $rExtended = mysqli_fetch_array($result2, MYSQLI_NUM);
+        $rAmount = mysqli_fetch_array($result3, MYSQLI_NUM);
+        
+        echo json_encode(array(
+            'rDate' => $rDate,
+            'rType' => $rType,
+            '$rExtended' => $rExtended,
+            'rAmount' => $rAmount
+        ));
+>>>>>>> cat/master
     }
 
     if(mysqli_num_rows($result) > 0){
