@@ -2,15 +2,17 @@
     width: 50%;
     position: relative;
     left: 2%;
-    top: 50px;
     float: left;
+}
+#content{
+    position: relative;
+    top: 13px;
 }
 #setForm{
     width: 20%;
     position:relative;
     height:50%;
     left: 4%;
-    top:50px;
     float:left;
 }
 #submit{

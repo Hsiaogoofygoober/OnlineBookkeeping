@@ -13,7 +13,9 @@
           $sql = "INSERT INTO userdata (UserName, CostDate, CostType, CostAmount, CostExtended) Values ('$username', '$date', '$type','$amount','$extended')";
           mysqli_query($db_link, $sql);
           mysqli_close($db_link);   
-          echo json_encode(array('success' => true )); 
+          echo json_encode(array(
+            'success' => true
+          )); 
         }
         else{
             echo json_encode(array('success' => false ));

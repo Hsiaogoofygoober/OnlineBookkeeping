@@ -18,6 +18,28 @@
   </head>
 
   <body id="body">
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #d8e5ed;">
+  <a class="navbar-brand" disabled>記記帳帳</a>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"></a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0" id="navForm">
+    <span class="navbar-text" id="username" style="position: relative;right: 20%;float: right;">
+    目前使用者:
+    <?php
+      session_start();
+      echo $_SESSION["username"];
+    ?>
+    </span>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="button" style="color: white" id="logout">登出</button>
+    </form>
+  </div>
+</nav>
+<div id='content'>
   <div id='calendar'></div>
   <div id='setForm'>
     <form id="formId" >
@@ -48,9 +70,29 @@
     <button type="submit" class="btn btn-primary" id="submit">Submit</button>
    </form>
    </div>
+</div>
    <div id="piechart"></div> 
   </body>
-</html>
+
 <script src="../js/calendar.js"></script>
 <script src="../js/pieChart.js"></script>
+<script>
+  const logout = document.getElementById('logout');
+  
+  logout.addEventListener('click',()=>{
+    swal({
+  title: "確定登出嗎?",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+    window.location.href = "./loginPage.php"
+  } 
+});
+  })
+</script>
+</html>
+
 
