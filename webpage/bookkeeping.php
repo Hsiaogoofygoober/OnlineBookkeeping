@@ -16,7 +16,8 @@
     <script src="http://static.pureexample.com/js/flot/jquery.flot.pie.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   </head>
-
+  <?php
+  ?>
   <body id="body">
   <div id='calendar'></div>
   <div id='setForm'>
