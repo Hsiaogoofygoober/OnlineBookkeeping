@@ -9,8 +9,9 @@
     top: 13px;
 }
 #setForm{
-    width: 20%;
     position:relative;
+    top: 62px;
+    width: 20%;
     height:50%;
     left: 4%;
     float:left;

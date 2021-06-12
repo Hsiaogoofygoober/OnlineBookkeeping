@@ -29,6 +29,9 @@
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0" id="navForm">
+    <input type="text" id="cost" disabled style="size: 10px;position: relative;right: 450px; 
+    float: right;border: 1px solid #008eb3;padding: 7px 0px;text-align: center;font-family: 'Microsoft soft';
+    border-radius: 5px">
     <span class="navbar-text" id="username" style="position: relative;right: 20%;float: right;">
     目前使用者:
     <?php
@@ -73,6 +76,7 @@
    </div>
 </div>
    <div id="piechart"></div> 
+   
   </body>
 
 <script src="../js/calendar.js"></script>
@@ -84,7 +88,7 @@
     swal({
   title: "確定登出嗎?",
   icon: "warning",
-  buttons: true,
+  buttons: ["否","是"],
   dangerMode: true,
 })
 .then((willDelete) => {
