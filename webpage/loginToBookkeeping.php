@@ -23,7 +23,7 @@
 
             if($username==""||$password==""){
               echo"<script>"."window.alert"."("."\""."請填寫正確的資訊！"."\"".")".";"."</script>";
-              header("Refresh:1;url=loginPage.php");
+              header("Refresh:0;url=loginPage.php");
               exit;
             }
             $str= "SELECT *\n". "FROM userlogin\n". "WHERE userlogin.UserName = \"$username\"";
@@ -34,11 +34,10 @@
             if($pa==$password){              
               $_SESSION["username"]=$username;
               $_SESSION["password"]=$password;
-              header("Refresh:0;url=bookkeeping.php");
+              header("Location:bookkeeping.php");
             }
             else{  
-              echo"<script>"."window.alert"."("."\""."登入失敗，請重新登入！"."\"".")".";"."</script>";
-              header("Refresh:1;url=loginPage.php");
+              header("Location:loginPage.php");
             }
           }
         }
