@@ -51,15 +51,21 @@
         dataType: 'json', // 回傳資料會是 json 格式
         data: $('#signupForm').serialize(), // 將表單資料用打包起來送出去
         success: function(res) {
-          if (res.success === true) {
+          if (res.success === true && res.isSame === false) {
             swal({
               title: "創建帳號成功",
               icon: "success",
               button: "確認",
             });
-            document.addEventListener('click',()=>{
-              window.location.href = "../webpage/loginPage.php";
+            document.addEventListener('click', () => {
+              window.location.href = "../webpage/index.php";
             })
+          } else if (res.isSame === true) {
+            swal({
+              title: "帳號重複",
+              icon: "error",
+              button: "確認",
+            });
           } else {
             swal({
               title: "請填寫正確資訊",

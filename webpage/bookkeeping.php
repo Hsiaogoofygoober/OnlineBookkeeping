@@ -89,7 +89,7 @@
 })
 .then((willDelete) => {
   if (willDelete) {
-    window.location.href = "./loginPage.php"
+    window.location.href = "./index.php"
   } 
 });
   })
