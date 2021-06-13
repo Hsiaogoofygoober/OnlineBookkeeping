@@ -60,7 +60,6 @@
           <option value="居家">居家</option>
           <option value="醫療">醫療</option>
           <option value="其他">其他</option>
-          <option value="收入">收入</option>
         </select>
     </div>
     <div class="form-group">
@@ -80,7 +79,6 @@
   </body>
 
 <script src="../js/calendar.js"></script>
-<script src="../js/pieChart.js"></script>
 <script>
   const logout = document.getElementById('logout');
   
