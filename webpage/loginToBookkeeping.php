@@ -37,7 +37,7 @@
               header("Location:bookkeeping.php");
             }
             else{  
-              header("Location:loginPage.php");
+              header("Location:index.php");
             }
           }
         }
