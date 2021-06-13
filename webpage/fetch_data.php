@@ -30,13 +30,13 @@
         'amount_data' => $amount_data
       );
 
-     
-
       $data = urldecode(json_encode($url_data));
       
       echo $data;
     }
-
+    else{
+      echo "fail";
+    }
 
     require_once("setting_close.inc");
 ?>
