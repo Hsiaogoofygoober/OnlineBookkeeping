@@ -16,8 +16,6 @@
     <script src="http://static.pureexample.com/js/flot/jquery.flot.pie.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   </head>
-  <?php
-  ?>
   <body id="body">
   <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #d8e5ed;">
   <a class="navbar-brand" disabled>記記帳帳</a>
@@ -91,7 +89,7 @@
 })
 .then((willDelete) => {
   if (willDelete) {
-    window.location.href = "./loginPage.php"
+    window.location.href = "./index.php"
   } 
 });
   })
