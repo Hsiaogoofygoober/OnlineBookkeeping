@@ -8,7 +8,6 @@
 
   if($email == "" ||$username == ""||$password == ""){
     $success = false;
-    //header("Location:signUpPage.php");
   }
   else{    
     $sql1 = "SELECT u.UserName From userlogin as u";
@@ -27,7 +26,6 @@
     $sql = "INSERT INTO userlogin (UserName, UserPassword, UserEmail, UserApproved) VALUES ('$username','$password','$email','N')";
 
     mysqli_query($db_link, $sql);    
-    //header("Location:loginPage.php");
     }
     $success = true;
   }
