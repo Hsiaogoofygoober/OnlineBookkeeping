@@ -246,10 +246,10 @@ document.addEventListener('DOMContentLoaded', function () {
               start: document.getElementById("selectDate").value, // a property!
               allDay: true,
             })
-          console.log(document.getElementById("extended").value);
+          let current_day = document.getElementById("selectDate").value;
           document.getElementById("formId").reset();
 
-          document.getElementById("selectDate").value = today;
+          document.getElementById("selectDate").value = current_day;
           if (res.success === true) {
             swal({
               title: "傳送成功",

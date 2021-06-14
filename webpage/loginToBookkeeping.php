@@ -34,7 +34,7 @@
             if($pa==$password){              
               $_SESSION["username"]=$username;
               $_SESSION["password"]=$password;
-              header("Location:index.php");
+              header("Location:bookkeeping.php");
             }
             else{  
               header("Location:index.php");
